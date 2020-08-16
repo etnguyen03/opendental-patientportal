@@ -1,0 +1,15 @@
+asgiref==3.2.10
+Babel==2.8.0
+Django==3.1
+django-formtools==2.2
+django-localflavor==3.0.1
+django-otp==0.9.4
+django-phonenumber-field==3.0.1
+django-two-factor-auth==1.12.1
+django-user-sessions==1.7.1
+phonenumbers==8.12.7
+python-stdnum==1.14
+pytz==2020.1
+qrcode==6.1
+six==1.15.0
+sqlparse==0.3.1
