@@ -5,6 +5,26 @@
 {% block content %}
 <h2>Welcome {{ first_name }}!</h2>
 
-    <h4>Upcoming Appointments</h4>
-
+<h4>Upcoming Appointments</h4>
+<table class="table">
+    <thead>
+        <th>Patient Name</th>
+        <th>Date & Time</th>
+        <th>Confirmed?</th>
+        <th></th>
+    </thead>
+    <tbody>
+        {% for appointment in appointment_list %}
+            <tr>
+                <td>{{ appointment.patient.first_name }} {{ appointment.patient.last_name }}</td>
+                <td>{{ appointment.time|date:"D, M j Y f A" }}</td>
+                <td>{% if appointment.confirmed %}<i class="fas fa-check-circle"></i>{% else %}<i class="fas fa-times-circle"></i>{% endif %} </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td>There are no appointments at this time.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
