@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
     'two_factor',
+    'patientportal',
 ]
 
 MIDDLEWARE = [
@@ -141,7 +142,3 @@ LOGOUT_REDIRECT_URL = "/"
 SESSION_ENGINE = 'user_sessions.backends.db'
 
 SILENCED_SYSTEM_CHECKS = ["admin.E410"]
-
-COMPANY_NAME = "Kevin Nguyen DDS, PLLC"
-MAIN_PAGE_DOMAIN = "mywoodbridgedentist.com"
-OPENDENTAL_API_ENDPOINT = "192.168.1.122"
