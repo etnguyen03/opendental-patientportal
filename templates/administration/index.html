@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<h2>Patient Portal Administration</h2>
+
+<h3>Create a new user</h3>
+    <form action="{% url 'administration:newuser' %}" method="post">
+        {% csrf_token %}
+        {{ newuser_form.as_p }}
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn-light btn">Reset</button>
+    </form>
+
+<h3>Manage user</h3>
+    <form action="{% url 'administration:manageuser-loader' %}" method="post">
+        {% csrf_token %}
+        {{ manageuser_form.as_p }}
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="reset" class="btn-light btn">Reset</button>
+    </form>
+
+<h3>Manage all users</h3>
+    <p><a href="/djangoadmin/auth/user/">Click here to see all users</a></p>
+{% endblock %}

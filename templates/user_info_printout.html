@@ -1,0 +1,45 @@
+{% load qr_code %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Portal</title>
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+        }
+        .code {
+            font-family: "Courier New", monospace;
+            font-size: 20px;
+        }
+        @media print{
+           .noprint{
+               display:none;
+           }
+        }
+    </style>
+</head>
+<body>
+    <div class="noprint">
+        <p>Press CTRL + P on the keyboard to print this page.</p>
+    </div>
+    <h1>Patient Portal Login Information</h1>
+    <h2>{{ company_name }}</h2>
+
+    <p>Below you will find information on how to access our patient portal, located at <span class="code">https://{{ patientportal_domain }}</span>.</p>
+
+    <p>Scan the code below to load the Patient Portal:</p>
+
+    {% qr_from_text "https://"|add:patientportal_domain %}
+
+    <p><b>Username</b>: <span class="code">{{ email_address }}</span></p>
+    <p><b>Password</b>: <span class="code">{{ password }}</span></p>
+
+    <p>Please note that the password is case sensitive. You can change your password upon logging in.</p>
+    <p>Thank you for your business.</p>
+
+    <hr>
+    <footer><p>Patient Portal software (c) Ethan Nguyen and contributors. All rights reserved.</p></footer>
+</body>
+</html>

@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_otp.plugins.otp_totp',
     'two_factor',
     'patientportal',
+    'qr_code',
 ]
 
 MIDDLEWARE = [

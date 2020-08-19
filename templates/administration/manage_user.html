@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block content %}
+<h2>Manage User {{ username }}</h2>
+
+<h3>User Attributes</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Attribute</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attribute in attributes %}
+                <tr>
+                    <td>{{ attribute.key }}</td>
+                    <td>{{ attribute.value }}</td>
+                </tr>
+            {% empty %}
+            <tr>
+                <td>There are no attributes to show.</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Click <a href="{% url 'admin:auth_user_change' object_id=user_id %}">here</a> to change user attributes.</p>
+
+<h3>Manage Patients</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Social Security Number</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+                <tr>
+                    <td>{{ patient.ssn }}</td>
+                    <td></td>
+                </tr>
+            {% empty %}
+            <tr>
+                <td>There are no attributes to show.</td>
+                <td></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<h3>Reset password</h3>
+    <form action="{% url 'administration:resetpw' user=username %}" method="post" target="_blank">
+        {% csrf_token %}
+        {{ reset_password_form.as_p }}
+        <button type="submit" class="btn btn-primary">Reset password</button>
+    </form>
+
+<h3>Reset two factor authentication</h3>
+    <p>This user has two-factor-authentication <b>{% if twofa %}enabled{% else %}disabled{% endif %}</b>.</p>
+    {% if twofa %}
+        <form action="{% url 'administration:disable2fa' user=username %}" method="post">
+            {% csrf_token %}
+            {{ disable_2fa_form.as_p }}
+            <button type="submit" class="btn btn-primary">Disable two factor authentication</button>
+        </form>
+    {% endif %}
+{% endblock %}

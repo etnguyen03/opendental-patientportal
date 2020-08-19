@@ -18,20 +18,21 @@ from django.contrib import admin as django_admin
 from django.urls import path, include
 
 from two_factor.urls import urlpatterns as tf_urls
+
+from patientportal.apps.administration import urls as administration_urls
 from patientportal.apps.dash.views import dash_view
 from patientportal.apps.profile.views import profile_view, CustomPasswordChangeView
-from patientportal.apps.admin.views import admin_view
 from patientportal.apps.auth.views import logout_view
 
 django_admin.autodiscover()
 
 urlpatterns = [
-    path('djangoadmin/', django_admin.site.urls),
-    path('admin/', admin_view),
-    path('logout/', logout_view),
+    path('administration/', include(administration_urls)),
+    path('logout/', logout_view, name="logout"),
     path('profile/', profile_view, name="profile"),
     path('profile/chpasswd', CustomPasswordChangeView.as_view(template_name="pwchange.html"), name="password_change"),
     path('', dash_view),
     url(r'', include(tf_urls)),
     url(r'', include('user_sessions.urls', 'user_sessions')),
+    path('djangoadmin/', django_admin.site.urls),
 ]
