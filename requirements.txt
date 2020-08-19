@@ -10,7 +10,7 @@ Django==3.1
 django-formtools==2.2
 django-localflavor==3.0.1
 django-otp==1.0.0
-django-phonenumber-field==4.0.0
+django-phonenumber-field==5.0.0
 django-qr-code==1.2.0
 django-two-factor-auth==1.12.1
 django-user-sessions==1.7.1
