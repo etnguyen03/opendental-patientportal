@@ -31,7 +31,7 @@ urlpatterns = [
     path('logout/', logout_view, name="logout"),
     path('profile/', profile_view, name="profile"),
     path('profile/chpasswd', CustomPasswordChangeView.as_view(template_name="pwchange.html"), name="password_change"),
-    path('', dash_view),
+    path('', dash_view, name="dash"),
     url(r'', include(tf_urls)),
     url(r'', include('user_sessions.urls', 'user_sessions')),
     path('djangoadmin/', django_admin.site.urls),
