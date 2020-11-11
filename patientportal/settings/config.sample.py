@@ -27,5 +27,18 @@ OPENDENTAL_MYSQL_DATABASE = (
     ""  # Opendental MySQL Server DB name (Opendental default is "opendental")
 )
 
+# Remove for testing (to use an SQLite3 DB in testing).
+# Fill in for production usage.
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "",
+        "USER": "",
+        "PASSWORD": "",
+        "HOST": "",
+        "PORT": "",
+    }
+}
+
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", "[::1]"]  # Allowed hosts, see Django docs
 DEBUG = False  # Set to False in production

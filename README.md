@@ -29,6 +29,8 @@ pipenv run gunicorn patientportal.wsgi
 
 ## Production Setup
 
+I assume that you have a reverse proxy and a Postgres database set up.
+
 ```bash
 git clone https://github.com/etnguyen03/opendental-patientportal
 cd opendental-patientportal
