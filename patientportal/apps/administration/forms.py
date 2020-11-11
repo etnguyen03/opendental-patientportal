@@ -22,4 +22,3 @@ class Disable2FAForm(forms.Form):
 
 class AddPatientForm(forms.Form):
     ssn = USSocialSecurityNumberField(label="Patient SSN", required=True)
-

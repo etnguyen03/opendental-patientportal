@@ -5,8 +5,9 @@ from django.urls import reverse
 
 class TestDash(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(username="test@example.com", email="test@example.com",
-                                                         password="topsecret")
+        self.user = get_user_model().objects.create_user(
+            username="test@example.com", email="test@example.com", password="topsecret"
+        )
 
     def test_profile_view(self):
         response = self.client.get(reverse("profile"))

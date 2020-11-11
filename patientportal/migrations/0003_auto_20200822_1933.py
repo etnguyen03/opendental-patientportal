@@ -6,17 +6,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('patientportal', '0002_auto_20200816_0343'),
+        ("patientportal", "0002_auto_20200816_0343"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='patient',
-            name='id',
+            model_name="patient",
+            name="id",
         ),
         migrations.AddField(
-            model_name='patient',
-            name='opendental_patient_id',
+            model_name="patient",
+            name="opendental_patient_id",
             field=models.BigIntegerField(default=0, primary_key=True, serialize=False),
         ),
     ]

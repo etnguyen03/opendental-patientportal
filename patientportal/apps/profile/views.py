@@ -18,8 +18,8 @@ def profile_view(request):
 
 
 class CustomPasswordChangeView(PasswordChangeView):
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy("profile")
 
     def form_valid(self, form):
-        messages.success(self.request, 'Your password has been changed.')
+        messages.success(self.request, "Your password has been changed.")
         return super().form_valid(form)

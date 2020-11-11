@@ -6,6 +6,8 @@ A patient portal written in Django for Open Dental.
 
 Please note that this project has absolutely no affiliation with Open Dental. It just interfaces with the MySQL database.
 
+This is still a work in progress, and is definitely not ready for any production usage.
+
 ---
 
 This program is free software: you can redistribute it and/or modify
