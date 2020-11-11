@@ -8,6 +8,46 @@ Please note that this project has absolutely no affiliation with Open Dental. It
 
 This is still a work in progress, and is definitely not ready for any production usage.
 
+## Development Environment Setup
+
+```bash
+git clone https://github.com/etnguyen03/opendental-patientportal
+cd opendental-patientportal
+```
+
+Now, you will want to copy `patientportal/settings/config.sample.py` to `patientportal/settings/config.py`
+and fill in the details.
+
+Then,
+
+```bash
+pipenv install --dev
+pipenv run python3 manage.py collectstatic
+pipenv run python3 manage.py migrate
+pipenv run gunicorn patientportal.wsgi
+```
+
+## Production Setup
+
+```bash
+git clone https://github.com/etnguyen03/opendental-patientportal
+cd opendental-patientportal
+```
+
+Now, you will want to copy `patientportal/settings/config.sample.py` to `patientportal/settings/config.py`
+and fill in the details. Ensure `DEBUG` is set to `False`.
+
+Then,
+
+```bash
+pipenv install
+pipenv run python3 manage.py collectstatic
+pipenv run python3 manage.py migrate
+pipenv run gunicorn patientportal.wsgi
+```
+
+A `systemd` service will be created in the future.
+
 ---
 
 This program is free software: you can redistribute it and/or modify

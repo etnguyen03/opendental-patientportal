@@ -27,6 +27,12 @@ jobs:
       run: |
         pipenv run coverage run --source . manage.py test
         pipenv run coverage xml
+    - name: Migrate database
+      run: |
+        pipenv run python3 manage.py migrate
+    - name: Collect static files
+      run: |
+        pipenv run python3 manage.py collectstatic --noinput
     - name: Run codacy-coverage-reporter
       uses: codacy/codacy-coverage-reporter-action@master
       with:

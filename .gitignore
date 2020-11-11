@@ -106,3 +106,4 @@ GitHub.sublime-settings
 
 patientportal/patientportal/settings/config.py
 password.txt
+/patientportal/staticfiles/
