@@ -28,9 +28,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # Defined in config.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+# Defined in config.py
 
 
 # Application definition

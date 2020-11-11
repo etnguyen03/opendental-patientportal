@@ -9,7 +9,9 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 
 from two_factor.utils import default_device
 
-from .forms import NewUserForm, ManageUserForm, ResetPasswordForm, Disable2FAForm
+from .forms import NewUserForm, ManageUserForm, ResetPasswordForm, Disable2FAForm, AddPatientForm
+from ..users.models import Patient
+from ...utils.opendental_db import get_connection, lookup_patient
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -45,6 +47,7 @@ def create_new_user_view(request):
 @login_required
 def manage_user_view(request, user):
     user_object = get_object_or_404(get_user_model(), username=user)
+    patients = list(Patient.objects.filter(user=user_object))
     context = {
         "username": user_object.username,
         "user_id": user_object.id,
@@ -57,8 +60,10 @@ def manage_user_view(request, user):
             {"key": "Administrator", "value": user_object.is_superuser},
             {"key": "Account Enabled", "value": user_object.is_active},
         ],
+        "patients": patients,
         "twofa": default_device(user_object),
         "disable_2fa_form": Disable2FAForm(),
+        "addpatient_form": AddPatientForm(),
     }
     return render(request, "administration/manage_user.html", context)
 
@@ -119,6 +124,29 @@ def disable_2fa(request, user: str = None):
             messages.success(request, "Two factor authentication disabled.")
         else:
             messages.error(request, "Please check the box to confirm reset.")
+        return redirect("administration:manageuser", user=user)
+    else:
+        return HttpResponseBadRequest()
+
+
+@user_passes_test(lambda u: u.is_superuser)
+@login_required
+def add_patient_view(request, user: str):
+    if user is None:
+        return HttpResponseBadRequest()
+    if request.method == "POST":
+        form = AddPatientForm(request.POST)
+        if form.is_valid():
+            user_object = get_object_or_404(get_user_model(), username=user)
+            mysql_db_connection = get_connection()
+            patient = lookup_patient(mysql_db_connection, form.cleaned_data["ssn"])
+            patient.user = user_object
+            patient.save()
+
+            messages.success(request, "Patient added.")
+        else:
+            for error in form.errors.values():
+                messages.error(request, error)
         return redirect("administration:manageuser", user=user)
     else:
         return HttpResponseBadRequest()

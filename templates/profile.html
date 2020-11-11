@@ -10,12 +10,14 @@
     <p>With this account, you have access to the following patients and their data. Please call us to make any changes.</p>
     <table class="table">
         <thead>
+            <th scope="col">Social Security Number</th>
             <th scope="col">First Name</th>
             <th scope="col">Last Name</th>
         </thead>
         <tbody>
             {% for patient in patient_list %}
                 <tr>
+                    <td>{{ patient.ssn }}</td>
                     <td>{{ patient.first_name }}</td>
                     <td>{{ patient.last_name }}</td>
                 </tr>

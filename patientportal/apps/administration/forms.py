@@ -1,4 +1,5 @@
 from django import forms
+from localflavor.us.forms import USSocialSecurityNumberField
 
 
 class NewUserForm(forms.Form):
@@ -17,4 +18,8 @@ class ResetPasswordForm(forms.Form):
 
 class Disable2FAForm(forms.Form):
     checkbox = forms.BooleanField(label="Check this box to confirm", required=True)
+
+
+class AddPatientForm(forms.Form):
+    ssn = USSocialSecurityNumberField(label="Patient SSN", required=True)
 

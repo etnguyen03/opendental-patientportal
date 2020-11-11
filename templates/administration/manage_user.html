@@ -34,6 +34,8 @@
         <thead>
             <tr>
                 <th scope="col">Social Security Number</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -41,6 +43,8 @@
             {% for patient in patients %}
                 <tr>
                     <td>{{ patient.ssn }}</td>
+                    <td>{{ patient.first_name }}</td>
+                    <td>{{ patient.last_name }}</td>
                     <td></td>
                 </tr>
             {% empty %}
@@ -51,6 +55,11 @@
             {% endfor %}
         </tbody>
     </table>
+    <form action="{% url 'administration:addpatient' user=username %}" method="post">
+        {% csrf_token %}
+        {{ addpatient_form.as_p }}
+        <button type="submit" class="btn btn-primary">Add patient</button>
+    </form>
 
 <h3>Reset password</h3>
     <form action="{% url 'administration:resetpw' user=username %}" method="post" target="_blank">
