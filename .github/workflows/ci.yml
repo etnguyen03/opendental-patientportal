@@ -74,6 +74,9 @@ jobs:
         version: latest
         install: true
 
+    - uses: satackey/action-docker-layer-caching@v0.0.8
+      continue-on-error: true
+
     - name: Build Docker image
       uses: docker/build-push-action@v2
       with:
@@ -101,6 +104,9 @@ jobs:
         with:
           version: latest
           install: true
+
+      - uses: satackey/action-docker-layer-caching@v0.0.8
+        continue-on-error: true
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
