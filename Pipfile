@@ -39,6 +39,7 @@ whitenoise = "*"
 django-useraudit = "*"
 psycopg2 = "*"
 gunicorn = "*"
+django-crispy-forms = "*"
 
 [dev-packages]
 black = "==20.8b1"

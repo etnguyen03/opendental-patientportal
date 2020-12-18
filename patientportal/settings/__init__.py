@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "patientportal",
     "qr_code",
     "useraudit",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -143,5 +144,6 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 SESSION_ENGINE = "user_sessions.backends.db"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 SILENCED_SYSTEM_CHECKS = ["admin.E410"]
